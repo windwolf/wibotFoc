@@ -1,0 +1,6 @@
+[submodule "fw/libs/wibotlib2"]
+	path = fw/libs/wibotlib2
+	url = https://github.com/windwolf/wibotlib2.git
+[submodule "fw/libs/CMSIS-DSP"]
+	path = fw/libs/CMSIS-DSP
+	url = https://github.com/ARM-software/CMSIS-DSP.git
