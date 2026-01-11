@@ -8,9 +8,13 @@ cmake_minimum_required(VERSION 3.22)
 #
 
 # Setup compiler settings
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD 17)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON)
+
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS ON)
 
 
 # Define the build type
@@ -18,8 +22,12 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Debug")
 endif()
 
+
+
 # Set the project name
 set(CMAKE_PROJECT_NAME wibotFoc.g4)
+
+include(project-defs.cmake)
 
 # Enable compile command to ease indexing with e.g. clangd
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
@@ -63,6 +71,26 @@ list(REMOVE_ITEM CMAKE_C_IMPLICIT_LINK_LIBRARIES ob)
 # Add linked libraries
 target_link_libraries(${CMAKE_PROJECT_NAME}
     stm32cubemx
-
+    
     # Add user defined libraries
+    CMSISDSP
 )
+
+# --------------- Add CMSIS-DSP Support ---------------
+# Set CMSIS Core path for CMSIS-DSP (required for cmsis_compiler.h)
+set(CMSISCORE ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/CMSIS/Core)
+add_subdirectory(libs/CMSIS-DSP)
+# --------------- Add WibotLib Support ---------------
+add_subdirectory(libs/wibotlib2)
+
+
+# --------------- Add Application Sources ---------------
+
+target_sources_batch(${CMAKE_PROJECT_NAME} apps)
+target_sources_batch(${CMAKE_PROJECT_NAME} apps/components)
+target_sources_batch(${CMAKE_PROJECT_NAME} apps/drivers)
+target_sources_batch(${CMAKE_PROJECT_NAME} tests)
+
+
+target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE    apps)
+target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE    tests)

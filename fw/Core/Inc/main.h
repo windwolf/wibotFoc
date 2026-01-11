@@ -57,24 +57,6 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define O_LIGHT_Pin GPIO_PIN_13
-#define O_LIGHT_GPIO_Port GPIOC
-#define ADC2_IN4_VIN_Pin GPIO_PIN_7
-#define ADC2_IN4_VIN_GPIO_Port GPIOA
-#define ADC2_IN5_VBAT_Pin GPIO_PIN_4
-#define ADC2_IN5_VBAT_GPIO_Port GPIOC
-#define INT_BATT_Pin GPIO_PIN_6
-#define INT_BATT_GPIO_Port GPIOC
-#define O_PWREN_Pin GPIO_PIN_11
-#define O_PWREN_GPIO_Port GPIOA
-#define I_KEY_ONOFF_Pin GPIO_PIN_12
-#define I_KEY_ONOFF_GPIO_Port GPIOA
-#define LED_LOCK_Pin GPIO_PIN_15
-#define LED_LOCK_GPIO_Port GPIOA
-#define I_KEY_DEC_Pin GPIO_PIN_3
-#define I_KEY_DEC_GPIO_Port GPIOB
-#define I_KEY_INC_Pin GPIO_PIN_4
-#define I_KEY_INC_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 

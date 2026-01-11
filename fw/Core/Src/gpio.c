@@ -42,50 +42,11 @@
 void MX_GPIO_Init(void)
 {
 
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
-
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOF_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(O_LIGHT_GPIO_Port, O_LIGHT_Pin, GPIO_PIN_RESET);
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, O_PWREN_Pin|LED_LOCK_Pin, GPIO_PIN_RESET);
-
-  /*Configure GPIO pin : O_LIGHT_Pin */
-  GPIO_InitStruct.Pin = O_LIGHT_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(O_LIGHT_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : INT_BATT_Pin */
-  GPIO_InitStruct.Pin = INT_BATT_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(INT_BATT_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : O_PWREN_Pin LED_LOCK_Pin */
-  GPIO_InitStruct.Pin = O_PWREN_Pin|LED_LOCK_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : I_KEY_ONOFF_Pin */
-  GPIO_InitStruct.Pin = I_KEY_ONOFF_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(I_KEY_ONOFF_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : I_KEY_DEC_Pin I_KEY_INC_Pin */
-  GPIO_InitStruct.Pin = I_KEY_DEC_Pin|I_KEY_INC_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
 }
 

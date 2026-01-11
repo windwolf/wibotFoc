@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900" height="260" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <style>
+            .axis{stroke:#333;stroke-width:2}
+            .tick{stroke:#999;stroke-width:1}
+            .label{font-family:Arial,Helvetica,sans-serif;font-size:14px;fill:#333}
+            .title{font-size:18px;font-weight:bold}
+            .blk0{fill:#e0e0e0}
+            .blk1{fill:#90caf9}
+            .blk2{fill:#a5d6a7}
+            .frame{stroke:#777;fill:none}
+            .legend{font-size:13px}
+        </style>
+    </defs>
+    <rect x="0" y="0" width="900" height="260" fill="#fff" />
+
+    <text x="450" y="24" class="label title" text-anchor="middle">SVPWM 七段式对称调制（归一化到一个周期）</text>
+
+    <!-- Time axis -->
+    <line x1="60" y1="60" x2="840" y2="60" class="axis" />
+    <text x="845" y="64" class="label">t</text>
+
+    <!-- Normalized sequence row -->
+    <text x="20" y="105" class="label">Sequence</text>
+    <!-- Draw a frame representing a full PWM period normalized to 1.0 -->
+    <rect x="100" y="80" width="760" height="40" class="frame" />
+
+    <!-- Blocks: t0/2, t1, t2, t0/2, t2, t1, t0/2 -->
+    <!-- Proportional widths (illustrative): t0/2=0.15, t1=0.25, t2=0.20; mirror symmetric -->
+    <!-- Compute pixel widths: total 760px; 0.15*760=114, 0.25*760=190, 0.20*760=152 -->
+    <rect x="100" y="80" width="114" height="40" class="blk0" />
+    <rect x="214" y="80" width="190" height="40" class="blk1" />
+    <rect x="404" y="80" width="152" height="40" class="blk2" />
+    <rect x="556" y="80" width="114" height="40" class="blk0" />
+    <rect x="670" y="80" width="152" height="40" class="blk2" />
+    <rect x="822" y="80" width="38" height="40" class="blk1" />
+    <!-- Adjust last two to fit exactly 760: we split remaining 204 into 152 + 38 + 14 (final t0/2) -->
+    <rect x="860" y="80" width="14" height="40" class="blk0" />
+
+    <!-- Labels inside blocks -->
+    <text x="157" y="105" class="label" text-anchor="middle">t0/2</text>
+    <text x="309" y="105" class="label" text-anchor="middle">t1</text>
+    <text x="480" y="105" class="label" text-anchor="middle">t2</text>
+    <text x="613" y="105" class="label" text-anchor="middle">t0/2</text>
+    <text x="746" y="105" class="label" text-anchor="middle">t2</text>
+    <text x="841" y="105" class="label" text-anchor="middle">t1</text>
+    <text x="867" y="105" class="label" text-anchor="middle">t0/2</text>
+
+    <!-- Legend -->
+    <rect x="100" y="140" width="20" height="12" class="blk0" />
+    <text x="126" y="150" class="label legend">0（零矢量）</text>
+    <rect x="260" y="140" width="20" height="12" class="blk1" />
+    <text x="286" y="150" class="label legend">Vk（第一有功矢量）</text>
+    <rect x="480" y="140" width="20" height="12" class="blk2" />
+    <text x="506" y="150" class="label legend">Vk+1（第二有功矢量）</text>
+
+    <!-- Note about mapping to phases -->
+    <text x="100" y="182" class="label">说明：</text>
+    <text x="100" y="202" class="label">- 七段式对称序列：0 → Vk → Vk+1 → 0 → Vk+1 → Vk → 0</text>
+    <text x="100" y="222" class="label">- 对应三相占空比按各扇区公式计算（见文档“七段式对称调制”章节）</text>
+</svg>
